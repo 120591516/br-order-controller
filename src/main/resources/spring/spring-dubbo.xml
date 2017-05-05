@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 引用dubbo服务 -->
+	<dubbo:application name="br-order-controller" />
+	<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />
+	<dubbo:reference interface="br.order.service.RoleManageService" id="manageRoleService" />
+	<dubbo:reference interface="br.order.service.UserManageService" id="userManageService" />
+	<dubbo:reference interface="br.order.service.UserPermissionService" id="userPermissionService" />
+	<dubbo:reference interface="br.order.service.RolePermissionService" id="rolePermissionService" />
+	<dubbo:reference interface="br.order.service.BrOperationService" id="brOperationService" />
+	
+	<dubbo:reference interface="br.crm.service.permission.UserManageCrmService" id="userManageCrmService" />
+	<dubbo:reference interface="br.crm.service.permission.RoleManageCrmService" id="roleManageCrmService" />
+	<!-- Redis -->
+	<dubbo:reference interface="br.order.redis.redis.RedisService" id="redisService" />
+	
+	<dubbo:reference interface="br.crm.service.org.OrganizationService" id="organizationService" />
+	<dubbo:reference interface="br.crm.service.org.OrgConnService" id="orgConnService" />
+	<dubbo:reference interface="br.crm.service.dict.DictAreaService" id="dictAreaService" />
+	<dubbo:reference interface="br.crm.service.org.OrgCooperationService" id="orgCooperationService" />
+	<dubbo:reference interface="br.crm.service.org.OrgIncomeService" id="orgIncomeService" />
+	<dubbo:reference interface="br.crm.service.org.OrgInvestService" id="orgInvestService" />
+	<dubbo:reference interface="br.crm.service.org.OrgLevelService" id="orgLevelService" />
+	<dubbo:reference interface="br.crm.service.org.OrgSaleService" id="orgSaleService" />
+	<dubbo:reference interface="br.crm.service.org.OrgSoftService" id="orgSoftService" />
+	<dubbo:reference interface="br.crm.service.org.OrgVisitService" id="orgVisitService" />
+	<dubbo:reference interface="br.crm.service.org.OrgWebService" id="orgWebService" />
+	<dubbo:reference interface="br.crm.service.suite.OrgBranchSuiteService" id="orgBranchSuiteService" />
+	<dubbo:reference interface="br.crm.service.dict.CountryManagerService" id="countryManagerService" />
+	<dubbo:reference interface="br.crm.service.dict.DictNationService" id="dictNationService" />
+	<dubbo:reference interface="br.crm.service.dict.DictAgeUnitService" id="dictAgeUnitService" />
+	<dubbo:reference interface="br.order.service.emp.EmpService" id="empService" />
+	<dubbo:reference interface="br.crm.service.dict.DictBloodTypeService" id="dictBloodTypeService" />
+	<dubbo:reference interface="br.crm.service.dict.DictEducationService" id="dictEducationService" />
+	<dubbo:reference interface="br.crm.service.dict.DictidentityService" id="dictidentityService" />
+	<dubbo:reference interface="br.crm.service.dict.DictinFormWayService" id="dictinFormWayService" />
+	<dubbo:reference interface="br.crm.service.dict.DictMarriageService" id="dictMarriageService" />
+	<dubbo:reference interface="br.crm.service.dict.DictJobClassService" id="dictJobClassService" />
+	<dubbo:reference interface="br.crm.service.dict.DictOccupationService" id="dictOccupationService" />
+	<dubbo:reference interface="br.crm.service.branch.OrgBranchService" id="orgBranchService" />
+	<dubbo:reference interface="br.order.user.service.dict.DictRelationshipService" id="dictRelationshipService" />
+	<dubbo:reference interface="br.crm.service.dict.DictSectionService" id="dictSectionService"/>
+	<dubbo:reference interface="br.crm.service.dept.OrgDeptService" id="orgDeptService" />
+	<dubbo:reference interface="br.crm.service.suite.OrgExamSuiteService" id="orgExamSuiteService"/>
+	<dubbo:reference interface="br.crm.service.dict.DictHighIncidenceDiseaseService"  id="dictHighIncidenceDiseaseService"/>
+	<dubbo:reference interface="br.crm.service.dict.DictExamSuiteTypeService" id="dictExamSuiteTypeService"/>
+	<dubbo:reference interface="br.crm.service.suite.OrgExamSuiteTypeService" id="orgExamSuiteTypeService"/>
+	<dubbo:reference interface="br.crm.service.suite.OrgExamSuiteHidService" id="orgExamSuiteHidService"/>
+	<dubbo:reference interface="br.crm.service.dict.DictreceipttypeService" id="dictreceipttypeService" />
+	<dubbo:reference interface="br.crm.service.dict.DictpaywayService" id="dictpaywayService" />
+	<dubbo:reference interface="br.crm.service.dict.DictsexService" id="dictsexService" />
+	<dubbo:reference interface="br.crm.service.dict.DictEmailService" id="dictEmailService" />
+	<dubbo:reference interface="br.crm.service.permission.OrganizationUserService" id="organizationUserService" />
+	<dubbo:reference interface="br.crm.service.permission.OrgUserManagerService" id="orgUserManagerService" />
+	<dubbo:reference interface="br.crm.service.dept.OrganizationDeptUserService" id="organizationDeptUserService" />
+	<dubbo:reference interface="br.crm.service.dict.DictagegroupService" id="dictagegroupService" />
+	<dubbo:reference interface="br.crm.service.examitem.OrgExamItemService" id="orgExamItemService"/>
+	<dubbo:reference interface="br.crm.service.examitem.OrgExamItemTypeService" id="orgExamItemTypeService"/>
+	<dubbo:reference interface="br.crm.service.examitemvalue.OrgExamItemValueService" id="orgExamItemValueService"/>
+	<dubbo:reference interface="br.crm.service.orgexamfeeitem.OrgExamFeeItemService" id="orgExamFeeItemService"/>
+	<dubbo:reference interface="br.crm.service.orgexamfeeitem.OrgExamFeeItemClassService" id="orgExamFeeItemClassService"/>
+	<dubbo:reference interface="br.crm.service.suite.OrgExamFeeItemSuiteService" id="orgExamFeeItemSuiteService"/>
+	<dubbo:reference interface="br.crm.service.orgexamfeeitem.OrgExamFeeItemDetailService" id="orgExamFeeItemDetailService"/>
+	<dubbo:reference interface="br.order.user.service.empUser.CustomerInfoService" id="customerInfoService"/>
+	<dubbo:reference interface="br.order.user.service.empUser.CustomerRegistService" id="customerRegistService"/>
+	<dubbo:reference interface="br.order.user.service.empCom.EnterpriseService" id="enterpriseService"/>
+	<dubbo:reference interface="br.order.user.service.empComDept.EnterpriseDepService" id="enterpriseDepService"/>
+	<dubbo:reference interface="br.order.user.service.empUserRelation.RelationshipService" id="relationShipService"/>
+	<!-- 首页展示 -->
+	<dubbo:reference interface="br.crm.service.firstdata.OrgFirstDataService" id="orgFirstDataService"/>
+	<!-- 图片 -->	
+	<dubbo:reference interface="br.crm.service.dict.DictImgService" id="dictImgService"/>
+	
+	<!--  -->							
+	<dubbo:reference interface="br.order.user.service.empComUser.EnterpriseEmpService" id="enterpriseEmpService"/>
+	<!--门店-休息日  -->							
+	<dubbo:reference interface="br.crm.service.branch.OrgRestService" id="orgRestService"/>
+	<!-- 机构审核信息 -->
+	<dubbo:reference interface="br.crm.service.org.OrgReviewService" id="orgReviewService"/>
+	<!-- 医院类型 -->
+	<dubbo:reference interface="br.crm.service.dict.DictDeptTypeService" id="dictDeptTypeService"/>
+	
+	<dubbo:reference interface="br.crm.service.examitem.OrgExamItemUserService" id="orgExamItemUserService"/>
+	<!-- 轮播图 -->
+	<dubbo:reference interface="br.crm.service.firstdata.FirstImgDataService" id="firstImgDataService"/>
+	<!-- 订单购物车 -->
+	<dubbo:reference interface="br.crm.service.customer.order.CustomerOrderCartService" id="customerOrderCartService"/>
+	 
+	
+	<!-- 订单 -->
+	<dubbo:reference interface="br.crm.service.customer.order.CustomerOrderService" id="customerOrderService"/>
+	<!-- 订单明细  -->
+	<dubbo:reference interface="br.crm.service.customer.order.CustomerOrderPayInfoService" id="customerOrderPayInfoService" />
+	<!-- 结论词类型 -->
+	<dubbo:reference interface="br.crm.service.dict.DictConclusionTypeService" id="dictConclusionTypeService"/>
+	<!-- 结论词科室类型 -->
+	<dubbo:reference interface="br.crm.service.dict.DictConclusionDeptTypeService" id="dictConclusionDeptTypeService"/>
+	<!-- 结论词分组 -->
+	<dubbo:reference interface="br.crm.service.dict.DictconclusionGroupService" id="dictconclusionGroupService"/>
+	<!-- 结论词结果分类 -->
+	<dubbo:reference interface="br.crm.service.dict.DictConclusionResultClassService" id="dictConclusionResultClassService"/>
+	<!-- 结论词 -->
+	<dubbo:reference interface="br.crm.service.dict.DictConclusionService" id="dictConclusionService"/>
+	<!-- 注册机构 -->
+	<dubbo:reference interface="br.crm.service.org.RegisterOrgService" id="registerOrgService"/>
+	 <!-- 订单退款明细添加 -->
+	<dubbo:reference interface="br.crm.service.customer.order.CustomerOrderRefundService" id="customerOrderRefundService" />  
+	 <!-- 系统设置 -->
+	<dubbo:reference interface="br.crm.service.system.SystemConfigService" id="systemConfigService" />  
+	 <!-- 订单状态 -->
+	<dubbo:reference interface="br.crm.service.customer.order.CustomerOrderStatusService" id="customerOrderStatusService" /> 
+	
+	
+	<!--体检项redis  --> 
+	<dubbo:reference interface="br.order.redis.examitem.OrgExamItemRedis" id="orgExamItemRedis" /> 
+	<!--体检项类型redis  --> 
+	<dubbo:reference interface="br.order.redis.examitem.OrgExamItemTypeRedis" id="orgExamItemTypeRedis" /> 
+	<!-- 体征词redis -->
+	<dubbo:reference interface="br.order.redis.examitemvalue.OrgExamItemValueRedis" id="orgExamItemValueRedis" /> 
+	<!--体检机构redis  --> 
+	<dubbo:reference interface="br.order.redis.org.OrgRedis" id="orgRedis" /> 
+	<!-- 体检机构等级redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgLevelRedis"  id="orgLevelRedis"/>
+	<!-- 体检机构联系人redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgConnRedis"  id="orgConnRedis"/>
+	<!-- 体检机构合作意向redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgCooperationRedis"  id="orgCooperationRedis"/>
+	<!-- 体检机构体检信息redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgIncomeRedis"  id="orgIncomeRedis"/>
+	<!-- 体检机构投资人redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgInvestRedis"  id="orgInvestRedis"/>
+	<!-- 体检机构销售信息redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgSaleRedis"  id="orgSaleRedis"/>
+	<!-- 体检机构软件信息redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgSoftRedis"  id="orgSoftRedis"/>
+	<!-- 体检机构拜访信息redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgVisitRedis"  id="orgVisitRedis"/>
+	<!-- 体检机构拜访信息redis -->
+	<dubbo:reference interface="br.order.redis.org.OrgWebRedis"  id="orgWebRedis"/>
+	<!--国家字典表redis  --> 
+	<dubbo:reference interface="br.order.redis.dict.DictCountryRedis" id="dictCountryRedis" /> 
+	<!-- 省市区字典表 -->
+	<dubbo:reference interface="br.order.redis.dict.DictAreaRedis" id="dictAreaRedis" /> 
+	<!--年龄分组字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictagegroupRedis" id="dictagegroupRedis" /> 
+	<!--年龄单位字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictageunitRedis" id="dictageunitRedis" /> 
+	<!--血型字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictbloodtypeRedis" id="dictbloodtypeRedis" /> 
+	<!--科室类型字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictDeptTypeRedis" id="dictDeptTypeRedis" /> 
+	<!--教育程度字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DicteducationRedis" id="dicteducationRedis" /> 
+	<!--套餐类型字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictExamSuiteTypeRedis" id="dictExamSuiteTypeRedis" /> 
+	<!--高发疾病字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictHighIncidenceDiseaseRedis" id="dictHighIncidenceDiseaseRedis" /> 
+	<!--身份字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictidentityRedis" id="dictidentityRedis" /> 
+	<!--图片字典表  -->
+	<dubbo:reference interface="br.order.redis.dict.DictImgRedis" id="dictImgRedis" /> 
+	<!--通知方式  -->
+	<dubbo:reference interface="br.order.redis.dict.DictinformwayRedis" id="dictinformwayRedis" /> 
+	<!--工作类型  -->
+	<dubbo:reference interface="br.order.redis.dict.DictjobclassRedis" id="dictjobclassRedis" /> 
+	<!--婚姻  -->
+	<dubbo:reference interface="br.order.redis.dict.DictmarriageRedis" id="dictmarriageRedis" /> 
+	<!--民族  -->
+	<dubbo:reference interface="br.order.redis.dict.DictNationRedis" id="dictNationRedis" /> 
+	<!--职业类型  -->
+	<dubbo:reference interface="br.order.redis.dict.DictoccupationRedis" id="dictoccupationRedis" /> 
+	<!--支付方式 -->
+	<dubbo:reference interface="br.order.redis.dict.DictpaywayRedis" id="dictpaywayRedis" /> 
+	<!--人际关系 -->
+	<dubbo:reference interface="br.order.redis.dict.DictRelationshipRedis" id="dictRelationshipRedis" /> 
+	<!--发票类型 -->
+	<dubbo:reference interface="br.order.redis.dict.DictreceipttypeRedis" id="dictreceipttypeRedis" /> 
+	<!--总检科室 -->
+	<dubbo:reference interface="br.order.redis.dict.DictsectionRedis" id="dictsectionRedis" /> 
+	<!--性别-->
+	<dubbo:reference interface="br.order.redis.dict.DictsexRedis" id="dictsexRedis" /> 
+	<!--门店-->
+	<dubbo:reference interface="br.order.redis.branch.OrgBranchRedis" id="orgBranchRedis" /> 
+	<!-- 门店图片 -->
+	<dubbo:reference interface="br.order.redis.branch.OrgBranchImgRedis" id="orgBranchImgRedis" /> 
+	<!--门店休息日-->
+	<dubbo:reference interface="br.order.redis.branch.OrgBranchRestRedis" id="orgBranchRestRedis" /> 
+	<!--门店科室-->
+	<dubbo:reference interface="br.order.redis.dept.OrgDeptRedis" id="orgDeptRedis" /> 
+	<!--医生-->
+	<dubbo:reference interface="br.order.redis.user.OrgUserRedis" id="orgUserRedis" /> 
+	<!--医生绑定检查项-->
+	<dubbo:reference interface="br.order.redis.examitem.OrgExamItemUserRedis" id="orgExamItemUserRedis" /> 
+	<!-- 收费项redis -->
+	<dubbo:reference interface="br.order.redis.examfeeitem.OrgExamFeeItemRedis" id="orgExamFeeItemRedis" />  
+	<!-- 套餐绑定门店-->
+	<dubbo:reference interface="br.order.redis.suite.OrgBranchSuiteRedis" id="orgBranchSuiteRedis" /> 
+	<!--结论词redis  -->
+	<dubbo:reference interface="br.order.redis.dict.DictConclusionRedis" id="dictConclusionRedis" /> 
+	<!-- 套餐redis -->
+	<dubbo:reference interface="br.order.redis.suite.OrgExamSuiteRedis" id="orgExamSuiteRedis" /> 
+	<!-- 套餐类型redis -->
+	<dubbo:reference interface="br.order.redis.suite.OrgExamSuiteTypeRedis" id="orgExamSuiteTypeRedis" /> 
+	<!--  套餐高发疾病redis缓存-->
+	<dubbo:reference interface="br.order.redis.suite.OrgExamSuiteHidRedis"   id="orgExamSuiteHidRedis"/>
+	<!--  套餐图片redis缓存-->
+	<dubbo:reference interface="br.order.redis.suite.OrgExamSuiteImgRedis"   id="orgExamSuiteImgRedis"/>
+	<!-- 套餐绑定收费项 -->
+	<dubbo:reference interface="br.order.redis.suite.OrgExamFeeItemSuiteRedis" id="orgExamFeeItemSuiteRedis" /> 
+	<!-- 收费项绑定检查项医生 -->
+	<dubbo:reference interface="br.order.redis.examfeeitem.OrgExamFeeItemDetailRedis" id="orgExamFeeItemDetailRedis" /> 
+	<!--结论词科室类型  -->
+	<dubbo:reference interface="br.order.redis.dict.DictConclusionDeptTypeRedis" id="dictConclusionDeptTypeRedis" />
+	<!--结论词分组  -->
+	<dubbo:reference interface="br.order.redis.dict.DictconclusionGroupRedis" id="dictconclusionGroupRedis" />
+	<!--结论词结果  -->
+	<dubbo:reference interface="br.order.redis.dict.DictConclusionResultClassRedis" id="dictConclusionResultClassRedis" />
+	
+</beans>
